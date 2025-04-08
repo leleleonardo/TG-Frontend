@@ -10,6 +10,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <NextUIProvider>
       <Index />
+      
     </NextUIProvider>
   </React.StrictMode>
 );
