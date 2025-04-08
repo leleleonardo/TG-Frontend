@@ -9,8 +9,8 @@ import About from '../pages/about'
 const router = createBrowserRouter([
   { path: '/home', element: <LoginPage /> },
   { path: '/home', element: <Home /> },
-]);
   {path: '/login', element: <Login />},
   {path: '/about', element: <About />},
+]);
 
 export default router;
