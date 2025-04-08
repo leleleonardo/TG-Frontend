@@ -10,6 +10,13 @@ export default function Footer() {
               className="h-10 rounded-md" // ou use "rounded-full" pra ficar circular
             />
           </div>
+
+          {/* HOME */}
+          <div>
+            <a href="#" className="text-white hover:underline">
+              HOME
+            </a>
+          </div>
   
           {/* CONTATO */}
           <div>
@@ -27,7 +34,7 @@ export default function Footer() {
   
           {/* SOBRE */}
           <div>
-            <a href="#" className="text-white hover:underline">
+            <a href="/about" className="text-white hover:underline">
               SOBRE
             </a>
           </div>
