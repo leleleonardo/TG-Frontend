@@ -1,42 +1,52 @@
+// components/AppNavbar.tsx
 import {
-    Navbar,
-    NavbarBrand,
-    NavbarContent,
-    NavbarItem,
-    Button,
-    Avatar,
-  } from "@heroui/react";
-  import { LogOut } from "lucide-react";
-  
-  export const MedSyncLogo = () => {
-    return (
-      <div className="text-white font-semibold text-sm pl-2">
-        MEDSYNC
-      </div>
-    );
-  };
-  
-  export default function AppNavbar() {
-    const userEmail = "hidezebest@yakuza.com";
-  
-    return (
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+  Button,
+  Avatar,
+} from "@heroui/react";
+import { useState } from "react";
+import SidebarMenu from "../../components/side drawer";
+
+export const MedSyncLogo = () => {
+  return (
+    <div className="text-white font-semibold text-sm">
+      MEDSYNC
+    </div>
+  );
+};
+
+export default function AppNavbar() {
+  const userEmail = "hidezebest@yakuza.com";
+
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  return (
+    <>
+      {/* Navbar principal */}
       <Navbar
         isBordered
         isBlurred={false}
-        className="bg-[#76884E] text-white"
+        className="bg-[#76884E] text-white px-4"
       >
-        <NavbarBrand>
-          {/* Logo da empresa */}
-          <MedSyncLogo />
-        </NavbarBrand>
-  
+        {/* Lado esquerdo: Logo + Botão do menu */}
+        <NavbarContent justify="start" className="items-center gap-4">
+          <NavbarBrand>
+            <MedSyncLogo />
+          </NavbarBrand>
+          <Button variant="light" onPress={() => setIsDrawerOpen(true)} className="text-white">
+            Abrir Menu
+          </Button>
+        </NavbarContent>
+
+        {/* Lado direito: Email + Avatar */}
         <NavbarContent justify="end" className="items-center gap-4">
-          {/* Email do usuário */}
           <NavbarItem className="text-white text-sm hidden sm:flex">
             {userEmail}
           </NavbarItem>
-  
-          {/* Ícone do perfil */}
+
           <NavbarItem>
             <Avatar
               name="D"
@@ -44,8 +54,7 @@ import {
               className="bg-white text-[#76884E] font-bold"
             />
           </NavbarItem>
-  
-          {/* Botão de logout */}
+
           <NavbarItem>
             <Button
               isIconOnly
@@ -53,11 +62,14 @@ import {
               className="text-white"
               onClick={() => console.log("Logout")}
             >
-              <LogOut size={20} />
+              {/* <LogOut size={20} /> */}
             </Button>
           </NavbarItem>
         </NavbarContent>
       </Navbar>
-    );
-  }
-  
+
+      {/* Menu Lateral */}
+      <SidebarMenu isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} />
+    </>
+  );
+}

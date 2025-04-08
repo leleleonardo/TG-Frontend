@@ -1,7 +1,7 @@
 import Footer from '../../components/footer/footer';
 import LoginForm from '../../components/forms/form login';
 
-function Index() {
+function LoginPage() {
   return (
     <div
       className="min-h-screen flex flex-col bg-cover bg-center bg-no-repeat"
@@ -18,4 +18,4 @@ function Index() {
   );
 }
 
-export default Index;
+export default LoginPage;
