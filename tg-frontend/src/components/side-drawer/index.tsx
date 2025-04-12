@@ -5,6 +5,7 @@ import {
   Avatar,
   Button,
 } from "@nextui-org/react";
+import { useNavigate } from "react-router-dom"; // ← IMPORTANTE
 
 interface SidebarMenuProps {
   isOpen: boolean;
@@ -12,6 +13,13 @@ interface SidebarMenuProps {
 }
 
 export default function SidebarMenu({ isOpen, onClose }: SidebarMenuProps) {
+  const navigate = useNavigate(); // ← INSTÂNCIA DO HOOK
+
+  const handleGoToAgenda = () => {
+    onClose();           // Fecha o menu
+    navigate("/agenda"); // Navega para a página de agenda
+  };
+
   return (
     <Modal
       isOpen={isOpen}
@@ -47,7 +55,7 @@ export default function SidebarMenu({ isOpen, onClose }: SidebarMenuProps) {
         <>
           {/* Botão de fechar */}
           <div className="self-end">
-            <Button isIconOnly variant="light" onPress={onClose}>
+            <Button isIconOnly variant="light" onPress={onClose} className="bg-[#76884E]">
               ✕
             </Button>
           </div>
@@ -66,7 +74,12 @@ export default function SidebarMenu({ isOpen, onClose }: SidebarMenuProps) {
           <ul className="flex flex-col w-full gap-3 text-base px-2 text-zinc-800">
             <li className="font-semibold">Hide Zebest</li>
             <li className="hover:font-semibold cursor-pointer">Consultas do Dia</li>
-            <li className="hover:font-semibold cursor-pointer">Agenda</li>
+            <li
+              onClick={handleGoToAgenda}
+              className="hover:font-semibold cursor-pointer"
+            >
+              Agenda
+            </li>
             <li className="hover:font-semibold cursor-pointer">Pacientes</li>
             <hr className="my-2" />
             <li className="hover:font-semibold cursor-pointer">Meu Perfil</li>
