@@ -8,7 +8,7 @@ import {
   Avatar,
 } from "@heroui/react";
 import { useState } from "react";
-import SidebarMenu from "../../components/side drawer";
+import SidebarMenu from "../side-drawer";
 
 export const MedSyncLogo = () => {
   return (
@@ -20,8 +20,17 @@ export const MedSyncLogo = () => {
 
 export default function AppNavbar() {
   const userEmail = "hidezebest@yakuza.com";
-
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const openMenu = () => {
+    console.log("Abrir menu clicado"); // 👈 Debug
+    setIsDrawerOpen(true);
+  };
+
+  const closeMenu = () => {
+    console.log("Fechar menu clicado"); // 👈 Debug
+    setIsDrawerOpen(false);
+  };
 
   return (
     <>
@@ -36,7 +45,7 @@ export default function AppNavbar() {
           <NavbarBrand>
             <MedSyncLogo />
           </NavbarBrand>
-          <Button variant="light" onPress={() => setIsDrawerOpen(true)} className="text-white">
+          <Button variant="light" onPress={openMenu} className="text-white">
             Abrir Menu
           </Button>
         </NavbarContent>
@@ -69,7 +78,7 @@ export default function AppNavbar() {
       </Navbar>
 
       {/* Menu Lateral */}
-      <SidebarMenu isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} />
+      <SidebarMenu isOpen={isDrawerOpen} onClose={closeMenu} />
     </>
   );
 }
