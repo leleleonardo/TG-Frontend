@@ -8,11 +8,12 @@ import {
   Avatar,
 } from "@heroui/react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import SidebarMenu from "../side-drawer";
 
 export const MedSyncLogo = () => {
   return (
-    <div className="text-white font-semibold text-sm">
+    <div className="text-white font-semibold text-sm cursor-pointer">
       MEDSYNC
     </div>
   );
@@ -21,20 +22,24 @@ export const MedSyncLogo = () => {
 export default function AppNavbar() {
   const userEmail = "hidezebest@yakuza.com";
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const navigate = useNavigate();
 
   const openMenu = () => {
-    console.log("Abrir menu clicado"); // 👈 Debug
+    console.log("Abrir menu clicado");
     setIsDrawerOpen(true);
   };
 
   const closeMenu = () => {
-    console.log("Fechar menu clicado"); // 👈 Debug
+    console.log("Fechar menu clicado");
     setIsDrawerOpen(false);
+  };
+
+  const handleLogoClick = () => {
+    navigate("/home");
   };
 
   return (
     <>
-      {/* Navbar principal */}
       <Navbar
         isBordered
         isBlurred={false}
@@ -42,10 +47,10 @@ export default function AppNavbar() {
       >
         {/* Lado esquerdo: Logo + Botão do menu */}
         <NavbarContent justify="start" className="items-center gap-4">
-          <NavbarBrand>
+          <NavbarBrand onClick={handleLogoClick}>
             <MedSyncLogo />
           </NavbarBrand>
-          <Button variant="light" onPress={openMenu} className="text-white">
+          <Button variant="light" onPress={openMenu} className="text-white bg-[#AEAEAE]">
             Abrir Menu
           </Button>
         </NavbarContent>
@@ -77,7 +82,6 @@ export default function AppNavbar() {
         </NavbarContent>
       </Navbar>
 
-      {/* Menu Lateral */}
       <SidebarMenu isOpen={isDrawerOpen} onClose={closeMenu} />
     </>
   );
